@@ -1,0 +1,47 @@
+import os
+import json
+
+from scripts.environment_path import environment_path
+from scripts.folder_structure import folder_structure
+from scripts.env_config_setup import env_config_setup
+from scripts.git_repos import git_repos
+from scripts.clear_env import clear_env
+from scripts.bash_setup import bash_setup
+
+
+# Path and Configuration
+envdir = environment_path()
+
+env_config = {'envdir': envdir}
+
+if os.path.exists('env_config.json'):
+    print("Environment config file already exists and must be eliminated.")
+    clear_env()
+
+with open('env_config.json', 'w') as env_json:
+    json.dump(env_config, env_json)
+
+
+folder_structure(envdir)
+env_config_setup(envdir)
+git_repos(envdir)
+
+
+# Bash Setup [optional]
+bash_input = input("Do you want to set up bash?\n[y/N]\n")
+if bash_input.casefold() == 'y':
+    bash_setup(envdir)
+else:
+    print("Skipping bash setup.")
+
+
+
+# os.system("touch bcreds.json")
+
+
+
+
+
+
+
+
