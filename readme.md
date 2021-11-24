@@ -21,6 +21,7 @@ Clears out the existing 'Environment'.
    3. Config folder with env_config and vscode workspace config
    4. Notes folder cloned from git
    5. Work folder with empty structure
+   6. Backups folder should be created if not already exists at ~/backups
 2. Bash files created (if confirmed):
    1. .bash_profile
    2. .bashrc

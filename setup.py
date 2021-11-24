@@ -25,6 +25,7 @@ with open('env_config.json', 'w') as env_json:
     json.dump(env_config, env_json)
 
 # Folders, environments and repos
+os.makedirs(os.path.join(os.path.expanduser('~'), 'backups'), exist_ok=True)
 folder_structure(envdir)
 env_config_setup(envdir)
 git_repos(envdir)

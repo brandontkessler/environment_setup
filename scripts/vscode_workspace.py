@@ -42,9 +42,10 @@ def vscode_workspace(envdir):
 		}
 		setup['folders'].append(add_folder)
 
-	# Add the hidden folders
+	# Add the hidden and backup folders
 	setup['folders'].append({"path": os.path.join(os.path.expanduser('~'), '.aws')})
 	setup['folders'].append({"path": os.path.join(os.path.expanduser('~'), '.ssh')})
+	setup['folders'].append({"path": os.path.join(os.path.expanduser('~'), 'backups')})
 
 	# Write the json config to environment.code-workspace file in config folder
 	with open(os.path.join(envdir, 'config', 'environment.code-workspace'), 'w') as f:

@@ -5,7 +5,8 @@ def git_repos(envdir):
         'notes',
         'GenData',
         'decorators',
-        'data_structures'
+        'data_structures',
+        'daily_weather'
     ]
 
     for repo in repos:
@@ -14,5 +15,13 @@ def git_repos(envdir):
 
         os.system(gitcmd)
 
+        ## Create environments and install requirements
+        if repo in ('daily_weather'):
+            os.system(f'python -m venv {envdir}/code/{repo}/venv')
+            os.system(f'source {envdir}/code/{repo}/venv/bin/activate')
+            os.system(f'pip install --upgrade pip && pip install -r requirements.txt')
+            os.system('deactivate')
+
     print("\nAll repos have been cloned.\n")
+
     return
