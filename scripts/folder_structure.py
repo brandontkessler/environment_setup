@@ -23,7 +23,8 @@ def folder_structure(envdir):
         'work/notes', 
         'work/code/python', 
         'work/code/r', 
-        'work/code/sql'
+        'work/code/sql',
+        'config'
     ]
 
     for folder in env_folders:
