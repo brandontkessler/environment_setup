@@ -6,8 +6,8 @@ def env_config_setup(envdir):
 
     env_config = {'envdir': envdir}
 
-    with open(os.path.join(envdir, 'config', 'env_config.json'), 'w') as env_json:
-        json.dump(env_config, env_json)
+    with open(os.path.join(envdir, 'config', 'env_config.json'), 'w') as f:
+        f.write(json.dumps(env_config, indent=4))
 
     print("\nConfig files have been created in environment_setup and Environment\n")
 

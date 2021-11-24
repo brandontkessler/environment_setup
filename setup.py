@@ -34,9 +34,9 @@ if bash_input.casefold() == 'y':
 else:
     print("Skipping bash setup.")
 
-
-
-# os.system("touch bcreds.json")
+# Create Credentials file
+os.system(f"touch {os.path.join(envdir, 'code', 'bcreds.json')}")
+os.system(f"touch {os.path.join(envdir, 'work', 'code', 'bcreds.json')}")
 
 
 
