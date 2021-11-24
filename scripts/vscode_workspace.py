@@ -20,7 +20,8 @@ def vscode_workspace(envdir):
 				"kisstkondoros.vscode-gutter-preview",
 				"equinusocio.vsc-material-theme-icons",
             	"coenraads.bracket-pair-colorizer",
-				"shd101wyy.markdown-preview-enhanced"
+				"shd101wyy.markdown-preview-enhanced",
+				"tomoki1207.pdf"
 			]
 		},
 	}
