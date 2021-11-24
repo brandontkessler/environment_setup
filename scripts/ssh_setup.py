@@ -4,7 +4,7 @@ from textwrap import dedent
 def ssh_setup():
     ssh_path = os.path.join(os.path.expanduser('~'), '.ssh')
 
-    config_file = """
+    config_file = """\n
         ### Basic Host ###
         # Host dev
         #     HostName dev.example.com
@@ -38,7 +38,7 @@ def ssh_setup():
 
     if not os.path.exists(ssh_path):
         os.mkdir(ssh_path)
-    
+
     with open(os.path.join(ssh_path, 'config'), 'a') as f:
         f.write(dedent(config_file))
 
