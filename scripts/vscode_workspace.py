@@ -16,8 +16,7 @@ def vscode_workspace(envdir):
 				"ms-python.python",
 				"yzhang.markdown-all-in-one",
 				"sdras.night-owl",
-				"vscode-icons-team.vscode-icons",
-				"dracula-theme.theme-dracula"
+				"vscode-icons-team.vscode-icons"
 			]
 		},
 	}
