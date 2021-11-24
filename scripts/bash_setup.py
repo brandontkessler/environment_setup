@@ -2,6 +2,12 @@ import os
 from textwrap import dedent
 
 def bash_setup(envdir):
+    bash_input = input("Do you want to set up bash?\n[y/N]\n")
+
+    if bash_input.casefold() != 'y':
+        print("\nSkipping bash setup.\n")
+        return
+    
     basedir = os.path.expanduser('~')
     
     pythonpath = f"""

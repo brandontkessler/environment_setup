@@ -40,6 +40,7 @@ def vscode_workspace(envdir):
 
 	# Add the hidden folders
 	setup['folders'].append({"path": os.path.join(os.path.expanduser('~'), '.aws')})
+	setup['folders'].append({"path": os.path.join(os.path.expanduser('~'), '.ssh')})
 
 	# Write the json config to environment.code-workspace file in config folder
 	with open(os.path.join(envdir, 'config', 'environment.code-workspace'), 'w') as f:

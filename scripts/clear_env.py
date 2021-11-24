@@ -18,7 +18,7 @@ def clear_env():
         print("\nClearing environment...\n")
         shutil.rmtree(env['envdir'])
         os.remove('env_config.json')
-    elif confirmation.casefold() == 'n':
+    elif confirmation.casefold() in ('n', ''):
         print("\nCanceling...\n")
     else:
         print(f"\nExiting...\nNo command for: {confirmation}. Please select 'y' to confirm.")

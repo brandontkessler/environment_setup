@@ -23,6 +23,7 @@ if os.path.exists('env_config.json'):
 with open('env_config.json', 'w') as env_json:
     json.dump(env_config, env_json)
 
+# Folders, environments and repos
 folder_structure(envdir)
 env_config_setup(envdir)
 git_repos(envdir)
@@ -33,16 +34,7 @@ os.system(f"touch {os.path.join(envdir, 'work', 'code', 'bcreds.json')}")
 aws_creds_setup()
 
 # Bash Setup [optional]
-bash_input = input("Do you want to set up bash?\n[y/N]\n")
-if bash_input.casefold() == 'y':
-    bash_setup(envdir)
-else:
-    print("Skipping bash setup.")
+bash_setup(envdir)
 
 # 3rd Party Setups
 vscode_workspace(envdir)
-
-
-
-
-
