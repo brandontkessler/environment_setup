@@ -38,9 +38,12 @@ def vscode_workspace(envdir):
 		}
 		setup['folders'].append(add_folder)
 
+	# Add the hidden folders
+	setup['folders'].append({"path": os.path.join(os.path.expanduser('~'), '.aws')})
+
 	# Write the json config to environment.code-workspace file in config folder
 	with open(os.path.join(envdir, 'config', 'environment.code-workspace'), 'w') as f:
 		f.write(json.dumps(setup, indent=4))
 
-vscode_workspace('/Users/brandon.kessler/Environment')
+	return
 

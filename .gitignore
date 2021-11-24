@@ -1,9 +1,2 @@
-venv
-code/
-notes/
-data/
-work/
-*creds*
-*code-workspace*
 __pycache__
 env_config.json

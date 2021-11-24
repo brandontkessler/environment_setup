@@ -7,6 +7,8 @@ from scripts.env_config_setup import env_config_setup
 from scripts.git_repos import git_repos
 from scripts.clear_env import clear_env
 from scripts.bash_setup import bash_setup
+from scripts.vscode_workspace import vscode_workspace
+from scripts.aws_creds_setup import aws_creds_setup
 
 
 # Path and Configuration
@@ -21,11 +23,14 @@ if os.path.exists('env_config.json'):
 with open('env_config.json', 'w') as env_json:
     json.dump(env_config, env_json)
 
-
 folder_structure(envdir)
 env_config_setup(envdir)
 git_repos(envdir)
 
+# Credentials Setup
+os.system(f"touch {os.path.join(envdir, 'code', 'bcreds.json')}")
+os.system(f"touch {os.path.join(envdir, 'work', 'code', 'bcreds.json')}")
+aws_creds_setup()
 
 # Bash Setup [optional]
 bash_input = input("Do you want to set up bash?\n[y/N]\n")
@@ -34,12 +39,8 @@ if bash_input.casefold() == 'y':
 else:
     print("Skipping bash setup.")
 
-# Create Credentials file
-os.system(f"touch {os.path.join(envdir, 'code', 'bcreds.json')}")
-os.system(f"touch {os.path.join(envdir, 'work', 'code', 'bcreds.json')}")
-
-
-
+# 3rd Party Setups
+vscode_workspace(envdir)
 
 
 
