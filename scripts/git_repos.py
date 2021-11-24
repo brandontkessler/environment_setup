@@ -17,10 +17,11 @@ def git_repos(envdir):
 
         ## Create environments and install requirements
         if repo in ('daily_weather'):
-            os.system(f'python -m venv {envdir}/code/{repo}/venv')
-            os.system(f'source {envdir}/code/{repo}/venv/bin/activate')
-            os.system(f'pip install --upgrade pip && pip install -r requirements.txt')
-            os.system('deactivate')
+            activate_env = f'source {envdir}/code/{repo}/venv/bin/activate'
+            pips = f'pip install --upgrade pip && pip install -r {envdir}/code/{repo}/requirements.txt'
+
+            os.system(f'python3 -m venv {envdir}/code/{repo}/venv')
+            os.system(f'{activate_env} && {pips} && deactivate')
 
     print("\nAll repos have been cloned.\n")
 
