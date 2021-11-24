@@ -65,6 +65,20 @@ def bash_setup(envdir):
         alias toenv="cd {envdir}"
     """
 
+    weather_path = os.path.join(envdir, 'code', 'daily_weather')
+    bash_functions = fr"""
+        function test_function() {{
+            echo "Some test foo!"
+            echo "Another line"
+        }}
+
+        function weather() {{
+            source {weather_path}/venv/bin/activate
+            python weather.py
+            deactivate
+        }}
+    """
+
     with open(os.path.join(basedir, '.bashrc'), 'a') as f:
         f.write(dedent(bashrc_additions))
         f.write(dedent(pythonpath))
@@ -77,6 +91,9 @@ def bash_setup(envdir):
 
     with open(os.path.join(basedir, '.bash_aliases'), 'a') as f:
         f.write(dedent(bash_aliases))
+
+    with open(os.path.join('/Users/brandon.kessler', '.bash_functions'), 'a') as f:
+        f.write(dedent(bash_functions))
 
     print("\nBash profiles have been set up.\n")
 
