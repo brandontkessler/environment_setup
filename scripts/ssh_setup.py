@@ -46,9 +46,9 @@ def ssh_setup():
 
     print("\nFinished creating the ssh config file in `~/.ssh/config`")
 
-    key_confirm = input("\nDo you want to generate a new rsa keypair?\n[Y/n]\n")
+    key_confirm = input("\nDo you want to generate a new rsa keypair?\n[y/N]\n")
     
-    if key_confirm.casefold() in ('y', ''):
+    if key_confirm.casefold() == 'y':
         key_name_input = input("Provide name or press enter for default (id_rsa) : ")
         key_name = 'id_rsa' if key_name_input == '' else key_name_input
         os.system(f"ssh-keygen -t rsa -b 4096 -f {os.path.join(ssh_path, key_name)}")
