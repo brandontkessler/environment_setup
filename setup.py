@@ -9,6 +9,7 @@ from scripts.clear_env import clear_env
 from scripts.bash_setup import bash_setup
 from scripts.vscode_workspace import vscode_workspace
 from scripts.aws_creds_setup import aws_creds_setup
+from scripts.ssh_setup import ssh_setup
 
 
 # Path and Configuration
@@ -32,6 +33,7 @@ git_repos(envdir)
 os.system(f"touch {os.path.join(envdir, 'code', 'bcreds.json')}")
 os.system(f"touch {os.path.join(envdir, 'work', 'code', 'bcreds.json')}")
 aws_creds_setup()
+ssh_setup()
 
 # Bash Setup [optional]
 bash_setup(envdir)
