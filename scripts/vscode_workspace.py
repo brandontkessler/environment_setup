@@ -17,7 +17,10 @@ def vscode_workspace(envdir):
 				"yzhang.markdown-all-in-one",
 				"sdras.night-owl",
 				"vscode-icons-team.vscode-icons",
-				"kisstkondoros.vscode-gutter-preview"
+				"kisstkondoros.vscode-gutter-preview",
+				"equinusocio.vsc-material-theme-icons",
+            	"coenraads.bracket-pair-colorizer",
+				"shd101wyy.markdown-preview-enhanced"
 			]
 		},
 	}

@@ -48,7 +48,7 @@ def bash_setup(envdir):
         PS1+="\[${white}\]@";
         PS1+="\[${yellow}\]\h";
         PS1+="\[${white}\]: ";
-        PS1+="\[${green}\]\W";
+        PS1+="\[${green}\]\w";
         PS1+="\n";
         PS1+="\[${white}\]$ \[${reset}\]";
 
