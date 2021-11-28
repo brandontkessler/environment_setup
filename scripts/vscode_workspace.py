@@ -8,7 +8,8 @@ def vscode_workspace(envdir):
 		"folders": [],
 		"settings": {
 			"workbench.colorTheme": "Night Owl (No Italics)",
-			"workbench.iconTheme": "vscode-icons"
+			"workbench.iconTheme": "vscode-icons",
+			"editor.rulers": [79]
 		},
 		"extensions": {
 			"recommendations": [
