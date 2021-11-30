@@ -6,7 +6,8 @@ def git_repos(envdir):
         'GenData',
         'decorators',
         'data_structures',
-        'daily_weather'
+        'daily_weather',
+        'awssdk'
     ]
 
     for repo in repos:
@@ -16,7 +17,7 @@ def git_repos(envdir):
         os.system(gitcmd)
 
         ## Create environments and install requirements
-        if repo in ('daily_weather'):
+        if repo in ('daily_weather', 'awssdk'):
             activate_env = f'source {envdir}/code/{repo}/venv/bin/activate'
             pips = f'pip install --upgrade pip && pip install -r {envdir}/code/{repo}/requirements.txt'
 
