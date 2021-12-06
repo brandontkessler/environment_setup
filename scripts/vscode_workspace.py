@@ -22,7 +22,8 @@ def vscode_workspace(envdir):
 				"equinusocio.vsc-material-theme-icons",
             	"coenraads.bracket-pair-colorizer",
 				"shd101wyy.markdown-preview-enhanced",
-				"tomoki1207.pdf"
+				"tomoki1207.pdf",
+				"meowteam.vscode-math-to-image"
 			]
 		},
 	}
