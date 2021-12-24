@@ -92,7 +92,7 @@ def bash_setup(envdir):
     with open(os.path.join(basedir, '.bash_aliases'), 'a') as f:
         f.write(dedent(bash_aliases))
 
-    with open(os.path.join('/Users/brandon.kessler', '.bash_functions'), 'a') as f:
+    with open(os.path.join(basedir, '.bash_functions'), 'a') as f:
         f.write(dedent(bash_functions))
 
     print("\nBash profiles have been set up.\n")
