@@ -1,16 +1,8 @@
-import json
 import shutil
 import os
 
-def clear_env():
-    
-    if not os.path.exists('env_config.json'):
-        print('\nExiting...\nUnable to find environment config file.')
-        return
-    # ADD ABILITY TO TAKE INPUT OF PATH IF UNABLE TO FIND CONFIG FILE
-    
-    with open('env_config.json', 'r') as env_json:
-        env = json.load(env_json)
+def clear_env(config):
+    env = config.get('BASE', 'envdir')
         
     confirmation = input("\nAre you sure you want to clear the existing environment?\n[y/N]\n")
 

@@ -1,22 +1,26 @@
 import os
 from textwrap import dedent
 
-def aws_creds_setup():
+def aws_creds_setup(config):
+    access_key = config.get('AWS', 'awsAccessKeyId', fallback='')
+    secret_key = config.get('AWS', 'awsSecretAccessKey', fallback='')
+    region = config.get('AWS', 'region', fallback='')
+
     aws_path = os.path.join(os.path.expanduser('~'), '.aws')
 
     if os.path.exists(os.path.join(aws_path, 'credentials')):
-        print("\nExiting...\naws credentials already set up in `~/.aws/credentials`")
+        print("\Skipping...\naws credentials already set up in `~/.aws/credentials`\n")
         return
 
     if not os.path.exists(aws_path):
         os.mkdir(aws_path)
 
     with open(os.path.join(aws_path, 'credentials'), 'w') as f:
-        creds_setup = """
+        creds_setup = f"""
             [default]
-            aws_access_key_id = ABCDEFG
-            aws_secret_access_key = abcdefghijklmnop
-            region = us-east-1
+            aws_access_key_id = {access_key}
+            aws_secret_access_key = {secret_key}
+            region = {region}
         """
 
         f.write(dedent(creds_setup).strip())

@@ -1,43 +1,48 @@
 import os
-import json
+from configparser import ConfigParser
 
-from scripts.environment_path import environment_path
-from scripts.folder_structure import folder_structure
-from scripts.env_config_setup import env_config_setup
-from scripts.git_repos import git_repos
-from scripts.clear_env import clear_env
-from scripts.bash_setup import bash_setup
-from scripts.vscode_workspace import vscode_workspace
-from scripts.aws_creds_setup import aws_creds_setup
-from scripts.ssh_setup import ssh_setup
+import scripts.base as base
+import scripts.git_setup as git
+import scripts.credential_setup as cred_setup
+import scripts.ssh as ssh
+import scripts.bash as bash
+import scripts.third_party_apps as thrdp
 
 
-# Path and Configuration
-envdir = environment_path()
+# Get Configs
+config = ConfigParser()
+config.read('config.ini')
+testing = config.getboolean('TEST', 'active')
 
-env_config = {'envdir': envdir}
+# Pathing Setup
+if testing:
+    envdir = os.path.join(os.path.expanduser('~'), config.get('TEST', 'path'))
+else: 
+    envdir = base.environment_path(config)
 
-if os.path.exists('env_config.json'):
-    print("Environment config file already exists and must be eliminated.")
-    clear_env()
+# Add envdir to config file
+config['BASE']['envdir'] = envdir
 
-with open('env_config.json', 'w') as env_json:
-    json.dump(env_config, env_json)
+with open('config.ini', 'w') as configfile:
+    config.write(configfile)
 
-# Folders, environments and repos
-os.makedirs(os.path.join(os.path.expanduser('~'), 'backups'), exist_ok=True)
-folder_structure(envdir)
-env_config_setup(envdir)
-git_repos(envdir)
+# Folder setup
+base.folder_structure(config)
+
+# Git Setup
+# git.git_repos(config)
+git.git_config(config)
 
 # Credentials Setup
-os.system(f"touch {os.path.join(envdir, 'code', 'bcreds.json')}")
-os.system(f"touch {os.path.join(envdir, 'work', 'code', 'bcreds.json')}")
-aws_creds_setup()
-ssh_setup()
+cred_setup.setup_bcreds(config)
+cred_setup.aws_creds_setup(config)
 
-# Bash Setup [optional]
-bash_setup(envdir)
+# SSH Setup
+ssh.ssh_config()
+ssh.keygen(config)
+
+# Bash Setup
+bash.bash_setup(config)
 
 # 3rd Party Setups
-vscode_workspace(envdir)
+thrdp.vscode_workspace(config)

@@ -2,10 +2,14 @@ import os
 import sys
 import shutil
 
-def folder_structure(envdir):
+def folder_structure(config):
+    envdir = config.get('BASE', 'envdir')
+
+    # Set up backups folder
+    os.makedirs(os.path.join(os.path.expanduser('~'), 'backups'), exist_ok=True)
 
     if os.path.exists(envdir):
-        msg = "An 'Environment' folder already exists in the root directory. Delete and rebuild?\n[y/N]\n"
+        msg = f"Environment folder already exists in at path: {envdir}. Delete and rebuild?\n[y/N]\n"
         env_exists_response = input(msg)
 
         if env_exists_response.casefold() != 'y'.casefold(): 
@@ -20,11 +24,8 @@ def folder_structure(envdir):
         'code/sandbox', 
         'data', 
         'notes', 
-        'work/notes', 
-        'work/code/python', 
-        'work/code/r', 
-        'work/code/sql',
-        'config'
+        'work/code',
+        'configs'
     ]
 
     for folder in env_folders:

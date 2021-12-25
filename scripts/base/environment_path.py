@@ -1,10 +1,10 @@
 import os
 import sys
 
-def environment_path():
-    setup_path = input("Desired path for 'Environment' folder\n[ROOT]\n")
+def environment_path(config):
+    setup_path = config.get('BASE', 'environmentPath')
 
-    if setup_path.casefold() in ('', 'root'): 
+    if setup_path.casefold() == '~': 
         basedir = os.path.expanduser('~')
     elif os.path.exists(setup_path):
         basedir = setup_path
@@ -17,6 +17,6 @@ def environment_path():
         sys.exit("Please provide a path or use root directory.")
 
     envdir = os.path.join(basedir, 'Environment')
-
+    
     print(f"\nSetting up 'Environment' in path: {envdir}\n")
     return envdir

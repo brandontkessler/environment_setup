@@ -1,7 +1,8 @@
 import json
 import os
 
-def vscode_workspace(envdir):
+def vscode_workspace(config):
+	envdir = config.get('BASE', 'envdir')
 	main_folders = ['code', 'config', 'data', 'notes', 'work']
 
 	setup = {

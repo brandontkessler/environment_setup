@@ -1,8 +1,11 @@
 import os
 from textwrap import dedent
 
-def ssh_setup():
+def ssh_config():
     ssh_path = os.path.join(os.path.expanduser('~'), '.ssh')
+
+    if not os.path.exists(ssh_path):
+        os.mkdir(ssh_path)
 
     config_file = """\n
         ### Basic Host ###
@@ -36,24 +39,11 @@ def ssh_setup():
         # 	ProxyJump bastion
     """
 
-    if not os.path.exists(ssh_path):
-        os.mkdir(ssh_path)
-
     with open(os.path.join(ssh_path, 'config'), 'a') as f:
         f.write(dedent(config_file))
 
     os.system(f"chmod 600 {os.path.join(ssh_path, 'config')}")
 
     print("\nFinished creating the ssh config file in `~/.ssh/config`")
-
-    key_confirm = input("\nDo you want to generate a new rsa keypair?\n[y/N]\n")
-    
-    if key_confirm.casefold() == 'y':
-        key_name_input = input("Provide name or press enter for default (id_rsa) : ")
-        key_name = 'id_rsa' if key_name_input == '' else key_name_input
-        os.system(f"ssh-keygen -t rsa -b 4096 -f {os.path.join(ssh_path, key_name)}")
-        print("\nFinished rsa keygen\n")
-    else:
-        print("\nSkipping rsa keygen\n")
 
     return
