@@ -3,7 +3,7 @@ import os
 
 def vscode_workspace(config):
 	wspace = config.get('BASE', 'wspace')
-	main_folders = ['code', 'config', 'data', 'notes', 'work']
+	main_folders = ['code', 'configs', 'data', 'notes', 'work']
 
 	setup = {
 		"folders": [],
@@ -39,7 +39,7 @@ def vscode_workspace(config):
 		print("Unable to find workspace directory. Not added to workspace.")
 	
 
-	# Add all of the Environment folders
+	# Add all of the Workspace folders
 	for folder in main_folders:
 		add_folder = {
 			"path": os.path.join(wspace, folder)
@@ -51,8 +51,8 @@ def vscode_workspace(config):
 	setup['folders'].append({"path": os.path.join(os.path.expanduser('~'), '.ssh')})
 	setup['folders'].append({"path": os.path.join(os.path.expanduser('~'), 'backups')})
 
-	# Write the json config to environment.code-workspace file in config folder
-	with open(os.path.join(wspace, 'configs', 'environment.code-workspace'), 'w') as f:
+	# Write the json config to workspace.code-workspace file in config folder
+	with open(os.path.join(wspace, 'configs', 'workspace.code-workspace'), 'w') as f:
 		f.write(json.dumps(setup, indent=4))
 
 	return

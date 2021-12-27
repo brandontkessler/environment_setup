@@ -1,5 +1,3 @@
-import os
-
 import scripts.setup as setup
 import scripts.git as git
 import scripts.creds as creds

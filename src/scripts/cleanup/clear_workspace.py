@@ -4,7 +4,7 @@ import os
 def clear_workspace(config):
     wspace = config.get('BASE', 'wspace')
         
-    confirmation = input("\nAre you sure you want to clear the existing environment?\n[y/N]\n")
+    confirmation = input("\nAre you sure you want to clear the existing workspace?\n[y/N]\n")
 
     if confirmation.casefold() == 'y':
         ## Backup the work folder ##
@@ -16,11 +16,11 @@ def clear_workspace(config):
             exclusions = "--exclude 'venv' --exclude '__pycache__' --exclude '*ipynb_checkpoints'"
             os.system(f"rsync -zavP {exclusions} {work_loc} {backup_loc}")
 
-        print("\nClearing environment...\n")
+        print("\nClearing workspace...\n")
         shutil.rmtree(wspace['wspace'])
         os.remove('env_config.json')
 
-        print("\nFinished eliminating environment...\n")
+        print("\nFinished eliminating workspace...\n")
     elif confirmation.casefold() in ('n', ''):
         print("\nCanceling...\n")
     else:
