@@ -2,7 +2,7 @@ import os
 from textwrap import dedent
 
 def bash_aliases(config):
-    envdir = config.get('BASE', 'envdir')
+    wspace = config.get('BASE', 'wspace')
     basedir = os.path.expanduser('~')
     
     bash_aliases = f"""
@@ -12,7 +12,7 @@ def bash_aliases(config):
         # Easier navigation: .., ...
         alias ..="cd .."
         alias ...="cd ../.."
-        alias toenv="cd {envdir}"
+        alias toenv="cd {wspace}"
     """
 
     with open(os.path.join(basedir, '.bash_aliases'), 'a') as f:

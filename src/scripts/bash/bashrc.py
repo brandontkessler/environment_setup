@@ -2,11 +2,11 @@ import os
 from textwrap import dedent
 
 def bashrc_setup(config):
-    envdir = config.get('BASE', 'envdir')
+    wspace = config.get('BASE', 'wspace')
     basedir = os.path.expanduser('~')
     
     pythonpath = f"""
-        PYTHONPATH=$PYTHONPATH:{os.path.join(envdir, 'code')}
+        PYTHONPATH=$PYTHONPATH:{os.path.join(wspace, 'code')}
         export PYTHONPATH
     """
 

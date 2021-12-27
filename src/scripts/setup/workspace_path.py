@@ -1,8 +1,8 @@
 import os
 import sys
 
-def environment_path(config):
-    setup_path = config.get('BASE', 'environmentPath')
+def workspace_path(config):
+    setup_path = config.get('BASE', 'workspacePath')
 
     if setup_path.casefold() == '~': 
         basedir = os.path.expanduser('~')
@@ -16,7 +16,7 @@ def environment_path(config):
         print(f"Test this by running `ls {setup_path}` in the command line.")
         sys.exit("Please provide a path or use root directory.")
 
-    envdir = os.path.join(basedir, 'Environment')
+    wspace = os.path.join(basedir, 'Workspace')
     
-    print(f"\nSetting up 'Environment' in path: {envdir}\n")
-    return envdir
+    print(f"\nSetting up 'Workspace' in path: {wspace}\n")
+    return wspace

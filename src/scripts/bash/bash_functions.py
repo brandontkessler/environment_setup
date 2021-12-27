@@ -2,10 +2,10 @@ import os
 from textwrap import dedent
 
 def bash_functions(config):
-    envdir = config.get('BASE', 'envdir')
+    wspace = config.get('BASE', 'wspace')
     basedir = os.path.expanduser('~')
     
-    weather_path = os.path.join(envdir, 'code', 'daily_weather')
+    weather_path = os.path.join(wspace, 'code', 'daily_weather')
     bash_functions = fr"""
         function test_function() {{
             echo "Some test foo!"
