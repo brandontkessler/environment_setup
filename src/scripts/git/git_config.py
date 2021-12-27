@@ -7,6 +7,7 @@ def git_config(config):
 
         os.system(f'git config --global user.name "{username}"')
         os.system(f'git config --global user.email {email}')
+        os.system('git config --global pull.ff only')
 
         personal_access_token = config.get('GIT', 'personalAccessToken', fallback='')
 
