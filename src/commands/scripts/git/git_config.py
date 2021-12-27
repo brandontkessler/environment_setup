@@ -21,6 +21,6 @@ def git_config(config):
         print('\n')
 
     else:
-        print('Git config skipped')
+        print('\nSkipping git config\n')
 
     return

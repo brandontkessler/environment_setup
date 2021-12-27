@@ -12,4 +12,4 @@ def bash_setup(config):
         bash_prompt()
         bash_functions(config)
     else:
-        print("\nSkipping bash setup...\n")
+        print("\nSkipping bash setup\n")

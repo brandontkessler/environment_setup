@@ -9,6 +9,6 @@ def keygen(config):
     if genkeys is True:
         os.system(f"ssh-keygen -t rsa -b 4096 -f {os.path.join(ssh_path, keyname)}")
     else:
-        print('\nSkipping keygen...\n')
+        print('\nSkipping keygen\n')
 
     return
