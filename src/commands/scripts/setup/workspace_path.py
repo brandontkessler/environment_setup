@@ -1,7 +1,14 @@
 import os
 import sys
+import shutil
 
-def workspace_path(config):
+def workspace_path(config, mode):
+    if mode == 'test':
+        path = os.path.join(os.getcwd(), 'workspace_test')
+        os.mkdir(path)
+        wspace = os.path.join(path, 'Workspace')
+        return wspace
+
     setup_path = config.get('BASE', 'workspacePath')
 
     if setup_path.casefold() == '~': 

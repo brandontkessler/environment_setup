@@ -1,6 +1,6 @@
-from scripts.cleanup.clear_workspace import clear_env
-import helpers as h
+from .scripts import cleanup
+from .helpers import config as config_helper
 
-config = h.read_config('.workspace_config.ini')
-
-clear_env(config)
+def teardown(workspace_path):
+    config = config_helper.read_config(workspace_path)
+    cleanup.clear_workspace(config)

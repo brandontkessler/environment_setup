@@ -1,22 +1,29 @@
-import scripts.setup as setup
-import scripts.git as git
-import scripts.creds as creds
-import scripts.ssh as ssh
-import scripts.bash as bash
-import scripts.third_party_apps as thrdp
-import helpers as h
+import os
 
-def build():
-    # Get Configs
-    config = h.read_config('config.ini')
+from .scripts import setup, git, creds, ssh, bash, third_party_apps as thrdp
+from .helpers import config as config_helper
 
-    wspace = setup.workspace_path(config)
-    config['BASE']['wspace'] = wspace
 
-    with open('.workspace_config.ini', 'w') as f:
-        config.write(f)
+def build(mode='prod'):
+    if mode == 'prod':
+        config = config_helper.read_config('config.ini')
+        wspace = setup.workspace_path(config, mode)
+        config['BASE']['wspace'] = wspace
 
-    h.reset_config_template()
+        # store updated configs to use for teardown
+        with open('.workspace_config.ini', 'w') as f:
+            config.write(f)
+
+        config_helper.reset_config_template()
+    
+    elif mode == 'test':
+        config = config_helper.read_config('templates/test_config_template.ini')
+        wspace = setup.workspace_path(config, mode)
+        config['BASE']['wspace'] = wspace
+
+    else:
+        raise Exception('Incorrect mode selected')
+
 
     # Folder setup
     setup.folder_structure(config)
@@ -39,6 +46,5 @@ def build():
     # 3rd Party Setups
     thrdp.vscode_workspace(config)
 
-
 if __name__=='__main__':
-    build()
+    build('test')

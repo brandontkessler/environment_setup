@@ -10,9 +10,9 @@ def folder_structure(config):
 
     if os.path.exists(wspace):
         msg = f"Workspace folder already exists in at path: {wspace}. Delete and rebuild?\n[y/N]\n"
-        env_exists_response = input(msg)
+        wsp_exists_response = input(msg)
 
-        if env_exists_response.casefold() != 'y'.casefold(): 
+        if wsp_exists_response.casefold() != 'y'.casefold(): 
             sys.exit("\nExiting...\nInput of 'y' needed to continue.")
 
         print("Clearing existing 'Workspace' folder in root directory.")
@@ -20,7 +20,7 @@ def folder_structure(config):
 
     os.mkdir(wspace)
 
-    env_folders = [
+    wsp_folders = [
         'code/sandbox', 
         'data', 
         'notes', 
@@ -28,7 +28,7 @@ def folder_structure(config):
         'configs'
     ]
 
-    for folder in env_folders:
+    for folder in wsp_folders:
         folder_path = os.path.join(wspace, folder)
         os.makedirs(folder_path)
 
