@@ -14,7 +14,8 @@ def build(mode='prod'):
         with open('.workspace_config.ini', 'w') as f:
             config.write(f)
 
-        config_helper.reset_config_template()
+        # reset the config template
+        shutil.copy('templates/config_template.ini', 'config.ini')
     
     elif mode == 'test':
         config = config_helper.read_config('templates/test_config_template.ini')

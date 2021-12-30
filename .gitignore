@@ -1,6 +1,6 @@
 __pycache__
-env_config.json
 *sandbox*
 .DS_Store
 .workspace_config.ini
 workspace_test/
+venv

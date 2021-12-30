@@ -1,33 +1,20 @@
 import os
 from textwrap import dedent
 
-def bashrc_setup(config):
+def bashrc_setup(config, fpath):
     wspace = config.get('BASE', 'wspace')
-    basedir = os.path.expanduser('~')
-    
-    pythonpath = f"""
-        PYTHONPATH=$PYTHONPATH:{os.path.join(wspace, 'code')}
-        export PYTHONPATH
-    """
+    codespace = os.path.join(wspace, 'code')
+    this_fpath = os.path.realpath(__file__)
+    static_path = os.path.normpath(os.path.join(this_fpath,
+                                                '..',
+                                                'static/bashrc.txt'))
 
-    bashrc_additions = """
-        if [ -f ~/.bash_prompt ]; then
-            . ~/.bash_prompt
-        fi
+    with open(static_path, 'r') as brc:
+        bashrc_additions = brc.read().replace('<workspace/code>', codespace)
 
-        if [ -f ~/.bash_aliases ]; then
-            . ~/.bash_aliases
-        fi
-
-        if [ -f ~/.bash_functions ]; then
-            . ~/.bash_functions
-        fi
-    """
-
-    with open(os.path.join(basedir, '.bashrc'), 'a') as f:
+    with open(fpath, 'a') as f:
         f.write(dedent(bashrc_additions))
-        f.write(dedent(pythonpath))
-    
+    print(fpath)
     print("\nBashrc has been set up.\n")
 
     return

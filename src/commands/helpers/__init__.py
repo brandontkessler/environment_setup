@@ -1,1 +1,1 @@
-from .config import read_config, reset_config_template
+from .config import read_config

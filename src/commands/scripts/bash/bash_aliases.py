@@ -1,21 +1,16 @@
 import os
 from textwrap import dedent
 
-def bash_aliases(config):
-    wspace = config.get('BASE', 'wspace')
-    basedir = os.path.expanduser('~')
-    
-    bash_aliases = f"""
-        # Set Python
-        alias python=python3
+def bash_aliases(fpath):
+    this_fpath = os.path.realpath(__file__)
+    static_fpath = os.path.normpath(os.path.join(this_fpath, 
+                                                 '..', 
+                                                 'static/bash_aliases.txt'))
 
-        # Easier navigation: .., ...
-        alias ..="cd .."
-        alias ...="cd ../.."
-        alias toenv="cd {wspace}"
-    """
+    with open(static_fpath, 'r') as ba:
+        bash_aliases = ba.read()
 
-    with open(os.path.join(basedir, '.bash_aliases'), 'a') as f:
+    with open(fpath, 'a') as f:
         f.write(dedent(bash_aliases))
 
     print("\nBash aliases have been set up.\n")

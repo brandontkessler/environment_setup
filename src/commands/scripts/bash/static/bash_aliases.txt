@@ -1,0 +1,6 @@
+# Set Python
+alias python=python3
+
+# Easier navigation: .., ...
+alias ..="cd .."
+alias ...="cd ../.."
