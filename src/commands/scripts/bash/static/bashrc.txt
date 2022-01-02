@@ -12,3 +12,6 @@ fi
 
 PYTHONPATH=$PYTHONPATH:<workspace/code>
 export PYTHONPATH
+
+PATH=$PATH:$HOME/bin
+export PATH

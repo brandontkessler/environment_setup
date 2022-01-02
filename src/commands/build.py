@@ -15,7 +15,7 @@ def build(mode='prod'):
             config.write(f)
 
         # reset the config template
-        shutil.copy('templates/config_template.ini', 'config.ini')
+        shutil.copy(os.path.join('templates', 'config_template.ini'), 'config.ini')
     
     elif mode == 'test':
         config = config_helper.read_config('templates/test_config_template.ini')
